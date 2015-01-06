@@ -1,18 +1,11 @@
-﻿using System.Threading.Tasks;
-using System.Web.Mvc;
-using Core.Utils.Managers;
+﻿using System.Web.Mvc;
 
 namespace Web.Client.Controllers
 {
 	public class HomeController : Controller
 	{
-		public async Task<ActionResult> Index()
+		public ActionResult Index()
 		{
-			IServerManager manager = new ServerManager();
-			var test = await manager.BookManager.Get("http://localhost:9010/odata/Books");
-
-			
-			
 			return View();
 		}
 
