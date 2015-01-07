@@ -7,7 +7,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A377434E-E826-49A4-B2CA-0C239BBD1DEE}</ProjectGuid>
+    <ProjectGuid>{64967AB2-8A95-4CB0-8A20-CCF55DB79F1A}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -219,7 +219,9 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -263,12 +265,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core.Entities\Core.Entities.csproj">
-      <Project>{48195009-CDBF-4655-B7C8-9576A2FE4B9A}</Project>
+      <Project>{48195009-cdbf-4655-b7c8-9576a2fe4b9a}</Project>
       <Name>Core.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Core.Utils\Core.Utils.csproj">
-      <Project>{6D626C39-931B-4A14-A241-9A23307A8563}</Project>
-      <Name>Core.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
@@ -287,7 +285,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>22135</DevelopmentServerPort>
+          <DevelopmentServerPort>12502</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:9011/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
