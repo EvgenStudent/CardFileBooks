@@ -7,7 +7,7 @@ namespace Web.Client.WebConfigSections
 		private const string ApiUrlsKey = "key";
 		private const string ApiUrlsValue = "value";
 
-		public const string SignInKey = "SignIn";
+		public const string GetBooksKey = "GetBooks";
 
 		[ConfigurationProperty(ApiUrlsKey, IsKey = true, IsRequired = true)]
 		public string Key

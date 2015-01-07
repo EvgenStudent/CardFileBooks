@@ -15,11 +15,6 @@ namespace Core.DB.Repository
 			_context = context;
 		}
 
-		public UnitOfWork()
-		{
-			_context = new CardFileBooksDbContext();
-		}
-
 		public void Dispose()
 		{
 			Dispose(true);

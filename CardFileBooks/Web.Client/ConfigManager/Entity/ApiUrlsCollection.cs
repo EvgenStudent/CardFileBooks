@@ -14,18 +14,18 @@ namespace Web.Client.ConfigManager.Entity
 			_apiPathsElements = ConfigSection.ApiUrls.Cast<ApiUrlsElement>();
 		}
 
-		public string SignIn
+		public string GetBooks
 		{
 			get
 			{
-				ApiUrlsElement apiPathsElement = _apiPathsElements.FirstOrDefault(x => x.Key == ApiUrlsElement.SignInKey);
+				ApiUrlsElement apiPathsElement = _apiPathsElements.FirstOrDefault(x => x.Key == ApiUrlsElement.GetBooksKey);
 				if (apiPathsElement != null)
 				{
 					var uri = new Uri(new Uri(ConfigSection.ApiUrls.Host), apiPathsElement.Value);
 					return uri.ToString();
 				}
-				return null;
+				return string.Empty;
 			}
 		}
-}
+	}
 }

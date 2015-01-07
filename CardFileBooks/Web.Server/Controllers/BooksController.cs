@@ -1,12 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Web.Http;
-using System.Web.Http.Description;
-using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Core.DB;
 using Core.DB.Repository;
@@ -16,7 +9,12 @@ namespace Web.Server.Controllers
 {
 	public class BooksController : ApiController
 	{
-		private readonly IUnitOfWork _unitOfWork = new UnitOfWork();
+		private readonly IUnitOfWork _unitOfWork;
+
+		public BooksController(IUnitOfWork unitOfWork)
+		{
+			_unitOfWork = unitOfWork;
+		}
 		
 		// GET: api/Books
 		public IQueryable<BookDTO> GetBooks()
