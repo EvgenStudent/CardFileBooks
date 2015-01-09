@@ -5,22 +5,21 @@ namespace Web.Client.WebConfigSections
 	public class CardFileBooksConfigurationSettingsSection : ConfigurationSection
 	{
 		private const string AppNameKey = "applicationName";
-		private const string ApiUrlsKey = "apiUrls";
-
+		private const string PageSizeKey = "pageSize";
 		public const string SectionName = "cardFileBooksConfigSettings";
 
 		[ConfigurationProperty(AppNameKey, IsRequired = true)]
 		public ApplicationNameElement ApplicationName
 		{
-			get { return (ApplicationNameElement)this[AppNameKey]; }
+			get { return (ApplicationNameElement) this[AppNameKey]; }
 			set { this[AppNameKey] = value; }
 		}
 
-		[ConfigurationProperty(ApiUrlsKey, IsDefaultCollection = false)]
-		public ApiUrlsElementCollection ApiUrls
+		[ConfigurationProperty(PageSizeKey, IsRequired = true)]
+		public PageSizeElement PageSize
 		{
-			get { return (ApiUrlsElementCollection)this[ApiUrlsKey]; }
-			set { this[ApiUrlsKey] = value; }
+			get { return (PageSizeElement) this[PageSizeKey]; }
+			set { this[PageSizeKey] = value; }
 		}
 	}
 }

@@ -1,261 +1,261 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
-  <!-- EF Runtime content -->
-  <edmx:Runtime>
-    <!-- SSDL content -->
-    <edmx:StorageModels>
-    <Schema Namespace="CardFileBooks_Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="CardFileBooks_ModelStoreContainer">
-    <EntitySet Name="Genres" EntityType="CardFileBooks_Model.Store.Genres" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Authors" EntityType="CardFileBooks_Model.Store.Authors" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Books" EntityType="CardFileBooks_Model.Store.Books" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="GenreBook" EntityType="CardFileBooks_Model.Store.GenreBook" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="AuthorBook" EntityType="CardFileBooks_Model.Store.AuthorBook" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK_GenreBook_Genre" Association="CardFileBooks_Model.Store.FK_GenreBook_Genre">
-      <End Role="Genre" EntitySet="Genres" />
-      <End Role="GenreBook" EntitySet="GenreBook" />
-    </AssociationSet>
-    <AssociationSet Name="FK_GenreBook_Book" Association="CardFileBooks_Model.Store.FK_GenreBook_Book">
-      <End Role="Book" EntitySet="Books" />
-      <End Role="GenreBook" EntitySet="GenreBook" />
-    </AssociationSet>
-    <AssociationSet Name="FK_AuthorBook_Author" Association="CardFileBooks_Model.Store.FK_AuthorBook_Author">
-      <End Role="Author" EntitySet="Authors" />
-      <End Role="AuthorBook" EntitySet="AuthorBook" />
-    </AssociationSet>
-    <AssociationSet Name="FK_AuthorBook_Book" Association="CardFileBooks_Model.Store.FK_AuthorBook_Book">
-      <End Role="Book" EntitySet="Books" />
-      <End Role="AuthorBook" EntitySet="AuthorBook" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="Genres">
-    <Key>
-      <PropertyRef Name="GenreId" />
-    </Key>
-    <Property Name="GenreId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="GenreName" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Authors">
-    <Key>
-      <PropertyRef Name="AuthorId" />
-    </Key>
-    <Property Name="AuthorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
-    <Property Name="PlaceOfBirth" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Books">
-    <Key>
-      <PropertyRef Name="BookId" />
-    </Key>
-    <Property Name="BookId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FinalReleaseDate" Type="datetime" Nullable="false" />
-    <Property Name="Publisher" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="NumberOfPages" Type="int" Nullable="false" />
-    <Property Name="ISBN" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="GenreBook">
-    <Key>
-      <PropertyRef Name="Genre_GenreId" />
-      <PropertyRef Name="Book_BookId" />
-    </Key>
-    <Property Name="Genre_GenreId" Type="int" Nullable="false" />
-    <Property Name="Book_BookId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="AuthorBook">
-    <Key>
-      <PropertyRef Name="Author_AuthorId" />
-      <PropertyRef Name="Book_BookId" />
-    </Key>
-    <Property Name="Author_AuthorId" Type="int" Nullable="false" />
-    <Property Name="Book_BookId" Type="int" Nullable="false" />
-  </EntityType>
-  <Association Name="FK_GenreBook_Genre">
-    <End Role="Genre" Type="CardFileBooks_Model.Store.Genres" Multiplicity="1" />
-    <End Role="GenreBook" Type="CardFileBooks_Model.Store.GenreBook" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Genre">
-        <PropertyRef Name="GenreId" />
-      </Principal>
-      <Dependent Role="GenreBook">
-        <PropertyRef Name="Genre_GenreId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_GenreBook_Book">
-    <End Role="GenreBook" Type="CardFileBooks_Model.Store.GenreBook" Multiplicity="*" />
-    <End Role="Book" Type="CardFileBooks_Model.Store.Books" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Book">
-        <PropertyRef Name="BookId" />
-      </Principal>
-      <Dependent Role="GenreBook">
-        <PropertyRef Name="Book_BookId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_AuthorBook_Author">
-    <End Role="Author" Type="CardFileBooks_Model.Store.Authors" Multiplicity="1" />
-    <End Role="AuthorBook" Type="CardFileBooks_Model.Store.AuthorBook" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Author">
-        <PropertyRef Name="AuthorId" />
-      </Principal>
-      <Dependent Role="AuthorBook">
-        <PropertyRef Name="Author_AuthorId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_AuthorBook_Book">
-    <End Role="AuthorBook" Type="CardFileBooks_Model.Store.AuthorBook" Multiplicity="*" />
-    <End Role="Book" Type="CardFileBooks_Model.Store.Books" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Book">
-        <PropertyRef Name="BookId" />
-      </Principal>
-      <Dependent Role="AuthorBook">
-        <PropertyRef Name="Book_BookId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
-    <!-- CSDL content -->
-    <edmx:ConceptualModels>
-      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="CardFileBooks_Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
-        <EntityContainer Name="CardFileBooks_ModelContainer" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Genres" EntityType="CardFileBooks_Model.Genre" />
-          <EntitySet Name="Authors" EntityType="CardFileBooks_Model.Author" />
-          <EntitySet Name="Books" EntityType="CardFileBooks_Model.Book" />
-          <AssociationSet Name="GenreBook" Association="CardFileBooks_Model.GenreBook">
-            <End Role="Genre" EntitySet="Genres" />
-            <End Role="Book" EntitySet="Books" />
-          </AssociationSet>
-          <AssociationSet Name="AuthorBook" Association="CardFileBooks_Model.AuthorBook">
-            <End Role="Author" EntitySet="Authors" />
-            <End Role="Book" EntitySet="Books" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="Genre">
-          <Key>
-            <PropertyRef Name="GenreId" />
-          </Key>
-          <Property Name="GenreId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="GenreName" Type="String" Nullable="false" />
-          <NavigationProperty Name="Book" Relationship="CardFileBooks_Model.GenreBook" FromRole="Genre" ToRole="Book" />
-        </EntityType>
-        <EntityType Name="Author">
-          <Key>
-            <PropertyRef Name="AuthorId" />
-          </Key>
-          <Property Name="AuthorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" />
-          <Property Name="Surname" Type="String" Nullable="false" />
-          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" />
-          <Property Name="PlaceOfBirth" Type="String" Nullable="false" />
-          <Property Name="Description" Type="String" Nullable="true" />
-          <NavigationProperty Name="Book" Relationship="CardFileBooks_Model.AuthorBook" FromRole="Author" ToRole="Book" />
-        </EntityType>
-        <EntityType Name="Book">
-          <Key>
-            <PropertyRef Name="BookId" />
-          </Key>
-          <Property Name="BookId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FinalReleaseDate" Type="DateTime" Nullable="false" />
-          <Property Name="Publisher" Type="String" Nullable="false" />
-          <Property Name="Description" Type="String" Nullable="false" />
-          <Property Name="NumberOfPages" Type="Int32" Nullable="false" />
-          <Property Name="ISBN" Type="String" Nullable="false" />
-          <Property Name="Title" Type="String" Nullable="false" />
-          <NavigationProperty Name="Genre" Relationship="CardFileBooks_Model.GenreBook" FromRole="Book" ToRole="Genre" />
-          <NavigationProperty Name="Author" Relationship="CardFileBooks_Model.AuthorBook" FromRole="Book" ToRole="Author" />
-        </EntityType>
-        <Association Name="GenreBook">
-          <End Type="CardFileBooks_Model.Genre" Role="Genre" Multiplicity="*" />
-          <End Type="CardFileBooks_Model.Book" Role="Book" Multiplicity="*" />
-        </Association>
-        <Association Name="AuthorBook">
-          <End Type="CardFileBooks_Model.Author" Role="Author" Multiplicity="*" />
-          <End Type="CardFileBooks_Model.Book" Role="Book" Multiplicity="*" />
-        </Association>
-      </Schema>
-    </edmx:ConceptualModels>
-    <!-- C-S mapping content -->
-    <edmx:Mappings>
-    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="CardFileBooks_ModelStoreContainer" CdmEntityContainer="CardFileBooks_ModelContainer">
-    <EntitySetMapping Name="Genres">
-      <EntityTypeMapping TypeName="IsTypeOf(CardFileBooks_Model.Genre)">
-        <MappingFragment StoreEntitySet="Genres">
-          <ScalarProperty Name="GenreId" ColumnName="GenreId" />
-          <ScalarProperty Name="GenreName" ColumnName="GenreName" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Authors">
-      <EntityTypeMapping TypeName="IsTypeOf(CardFileBooks_Model.Author)">
-        <MappingFragment StoreEntitySet="Authors">
-          <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Surname" ColumnName="Surname" />
-          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-          <ScalarProperty Name="PlaceOfBirth" ColumnName="PlaceOfBirth" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Books">
-      <EntityTypeMapping TypeName="IsTypeOf(CardFileBooks_Model.Book)">
-        <MappingFragment StoreEntitySet="Books">
-          <ScalarProperty Name="BookId" ColumnName="BookId" />
-          <ScalarProperty Name="FinalReleaseDate" ColumnName="FinalReleaseDate" />
-          <ScalarProperty Name="Publisher" ColumnName="Publisher" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="NumberOfPages" ColumnName="NumberOfPages" />
-          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <AssociationSetMapping Name="GenreBook" TypeName="CardFileBooks_Model.GenreBook" StoreEntitySet="GenreBook">
-      <EndProperty Name="Genre">
-        <ScalarProperty Name="GenreId" ColumnName="Genre_GenreId" />
-      </EndProperty>
-      <EndProperty Name="Book">
-        <ScalarProperty Name="BookId" ColumnName="Book_BookId" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="AuthorBook" TypeName="CardFileBooks_Model.AuthorBook" StoreEntitySet="AuthorBook">
-      <EndProperty Name="Author">
-        <ScalarProperty Name="AuthorId" ColumnName="Author_AuthorId" />
-      </EndProperty>
-      <EndProperty Name="Book">
-        <ScalarProperty Name="BookId" ColumnName="Book_BookId" />
-      </EndProperty>
-    </AssociationSetMapping>
-  </EntityContainerMapping>
-</Mapping></edmx:Mappings>
-  </edmx:Runtime>
-  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
-    <edmx:Connection>
-      <DesignerInfoPropertySet>
-        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
-      </DesignerInfoPropertySet>
-    </edmx:Connection>
-    <edmx:Options>
-      <DesignerInfoPropertySet>
-        <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
-        <DesignerProperty Name="UseLegacyProvider" Value="False" />
-      </DesignerInfoPropertySet>
-    </edmx:Options>
-    <!-- Diagram content (shape and connector positions) -->
-    <edmx:Diagrams>
-    </edmx:Diagrams>
-  </edmx:Designer>
+	<!-- EF Runtime content -->
+	<edmx:Runtime>
+		<!-- SSDL content -->
+		<edmx:StorageModels>
+			<Schema Namespace="CardFileBooks_Model.Store" Alias="Self" Provider="System.Data.SqlClient"
+			        ProviderManifestToken="2012"
+			        xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator"
+			        xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+				<EntityContainer Name="CardFileBooks_ModelStoreContainer">
+					<EntitySet Name="Genres" EntityType="CardFileBooks_Model.Store.Genres" store:Type="Tables" Schema="dbo" />
+					<EntitySet Name="Authors" EntityType="CardFileBooks_Model.Store.Authors" store:Type="Tables" Schema="dbo" />
+					<EntitySet Name="Books" EntityType="CardFileBooks_Model.Store.Books" store:Type="Tables" Schema="dbo" />
+					<EntitySet Name="GenreBook" EntityType="CardFileBooks_Model.Store.GenreBook" store:Type="Tables" Schema="dbo" />
+					<EntitySet Name="AuthorBook" EntityType="CardFileBooks_Model.Store.AuthorBook" store:Type="Tables" Schema="dbo" />
+					<AssociationSet Name="FK_GenreBook_Genre" Association="CardFileBooks_Model.Store.FK_GenreBook_Genre">
+						<End Role="Genre" EntitySet="Genres" />
+						<End Role="GenreBook" EntitySet="GenreBook" />
+					</AssociationSet>
+					<AssociationSet Name="FK_GenreBook_Book" Association="CardFileBooks_Model.Store.FK_GenreBook_Book">
+						<End Role="Book" EntitySet="Books" />
+						<End Role="GenreBook" EntitySet="GenreBook" />
+					</AssociationSet>
+					<AssociationSet Name="FK_AuthorBook_Author" Association="CardFileBooks_Model.Store.FK_AuthorBook_Author">
+						<End Role="Author" EntitySet="Authors" />
+						<End Role="AuthorBook" EntitySet="AuthorBook" />
+					</AssociationSet>
+					<AssociationSet Name="FK_AuthorBook_Book" Association="CardFileBooks_Model.Store.FK_AuthorBook_Book">
+						<End Role="Book" EntitySet="Books" />
+						<End Role="AuthorBook" EntitySet="AuthorBook" />
+					</AssociationSet>
+				</EntityContainer>
+				<EntityType Name="Genres">
+					<Key>
+						<PropertyRef Name="GenreId" />
+					</Key>
+					<Property Name="GenreId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+					<Property Name="GenreName" Type="nvarchar(max)" Nullable="false" />
+				</EntityType>
+				<EntityType Name="Authors">
+					<Key>
+						<PropertyRef Name="AuthorId" />
+					</Key>
+					<Property Name="AuthorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+					<Property Name="FullName" Type="nvarchar(max)" Nullable="false" />
+				</EntityType>
+				<EntityType Name="Books">
+					<Key>
+						<PropertyRef Name="BookId" />
+					</Key>
+					<Property Name="BookId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+					<Property Name="ReleaseYear" Type="int" Nullable="false" />
+					<Property Name="Publisher" Type="nvarchar(max)" Nullable="false" />
+					<Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+					<Property Name="NumberOfPages" Type="int" Nullable="false" />
+					<Property Name="ISBN" Type="nvarchar(max)" Nullable="false" />
+					<Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+				</EntityType>
+				<EntityType Name="GenreBook">
+					<Key>
+						<PropertyRef Name="Genres_GenreId" />
+						<PropertyRef Name="Book_BookId" />
+					</Key>
+					<Property Name="Genres_GenreId" Type="int" Nullable="false" />
+					<Property Name="Book_BookId" Type="int" Nullable="false" />
+				</EntityType>
+				<EntityType Name="AuthorBook">
+					<Key>
+						<PropertyRef Name="Authors_AuthorId" />
+						<PropertyRef Name="Book_BookId" />
+					</Key>
+					<Property Name="Authors_AuthorId" Type="int" Nullable="false" />
+					<Property Name="Book_BookId" Type="int" Nullable="false" />
+				</EntityType>
+				<Association Name="FK_GenreBook_Genre">
+					<End Role="Genre" Type="CardFileBooks_Model.Store.Genres" Multiplicity="1" />
+					<End Role="GenreBook" Type="CardFileBooks_Model.Store.GenreBook" Multiplicity="*" />
+					<ReferentialConstraint>
+						<Principal Role="Genre">
+							<PropertyRef Name="GenreId" />
+						</Principal>
+						<Dependent Role="GenreBook">
+							<PropertyRef Name="Genres_GenreId" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+				<Association Name="FK_GenreBook_Book">
+					<End Role="GenreBook" Type="CardFileBooks_Model.Store.GenreBook" Multiplicity="*" />
+					<End Role="Book" Type="CardFileBooks_Model.Store.Books" Multiplicity="1" />
+					<ReferentialConstraint>
+						<Principal Role="Book">
+							<PropertyRef Name="BookId" />
+						</Principal>
+						<Dependent Role="GenreBook">
+							<PropertyRef Name="Book_BookId" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+				<Association Name="FK_AuthorBook_Author">
+					<End Role="Author" Type="CardFileBooks_Model.Store.Authors" Multiplicity="1" />
+					<End Role="AuthorBook" Type="CardFileBooks_Model.Store.AuthorBook" Multiplicity="*" />
+					<ReferentialConstraint>
+						<Principal Role="Author">
+							<PropertyRef Name="AuthorId" />
+						</Principal>
+						<Dependent Role="AuthorBook">
+							<PropertyRef Name="Authors_AuthorId" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+				<Association Name="FK_AuthorBook_Book">
+					<End Role="AuthorBook" Type="CardFileBooks_Model.Store.AuthorBook" Multiplicity="*" />
+					<End Role="Book" Type="CardFileBooks_Model.Store.Books" Multiplicity="1" />
+					<ReferentialConstraint>
+						<Principal Role="Book">
+							<PropertyRef Name="BookId" />
+						</Principal>
+						<Dependent Role="AuthorBook">
+							<PropertyRef Name="Book_BookId" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+			</Schema>
+		</edmx:StorageModels>
+		<!-- CSDL content -->
+		<edmx:ConceptualModels>
+			<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm"
+			        xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration"
+			        xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator"
+			        Namespace="CardFileBooks_Model" Alias="Self"
+			        xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation"
+			        annotation:UseStrongSpatialTypes="false">
+				<EntityContainer Name="CardFileBooks_ModelContainer" annotation:LazyLoadingEnabled="true">
+					<EntitySet Name="Genres" EntityType="CardFileBooks_Model.Genre" />
+					<EntitySet Name="Authors" EntityType="CardFileBooks_Model.Author" />
+					<EntitySet Name="Books" EntityType="CardFileBooks_Model.Book" />
+					<AssociationSet Name="GenreBook" Association="CardFileBooks_Model.GenreBook">
+						<End Role="Genre" EntitySet="Genres" />
+						<End Role="Book" EntitySet="Books" />
+					</AssociationSet>
+					<AssociationSet Name="AuthorBook" Association="CardFileBooks_Model.AuthorBook">
+						<End Role="Author" EntitySet="Authors" />
+						<End Role="Book" EntitySet="Books" />
+					</AssociationSet>
+				</EntityContainer>
+				<EntityType Name="Genre">
+					<Key>
+						<PropertyRef Name="GenreId" />
+					</Key>
+					<Property Name="GenreId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+					<Property Name="GenreName" Type="String" Nullable="false" />
+					<NavigationProperty Name="Book" Relationship="CardFileBooks_Model.GenreBook" FromRole="Genre" ToRole="Book" />
+				</EntityType>
+				<EntityType Name="Author">
+					<Key>
+						<PropertyRef Name="AuthorId" />
+					</Key>
+					<Property Name="AuthorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+					<Property Name="FullName" Type="String" Nullable="false" />
+					<NavigationProperty Name="Book" Relationship="CardFileBooks_Model.AuthorBook" FromRole="Author" ToRole="Book" />
+				</EntityType>
+				<EntityType Name="Book">
+					<Key>
+						<PropertyRef Name="BookId" />
+					</Key>
+					<Property Name="BookId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+					<Property Name="ReleaseYear" Type="Int32" Nullable="false" />
+					<Property Name="Publisher" Type="String" Nullable="false" />
+					<Property Name="Description" Type="String" Nullable="false" />
+					<Property Name="NumberOfPages" Type="Int32" Nullable="false" />
+					<Property Name="ISBN" Type="String" Nullable="false" />
+					<Property Name="Title" Type="String" Nullable="false" />
+					<NavigationProperty Name="Genres" Relationship="CardFileBooks_Model.GenreBook" FromRole="Book" ToRole="Genre" />
+					<NavigationProperty Name="Authors" Relationship="CardFileBooks_Model.AuthorBook" FromRole="Book" ToRole="Author" />
+				</EntityType>
+				<Association Name="GenreBook">
+					<End Type="CardFileBooks_Model.Genre" Role="Genre" Multiplicity="*" />
+					<End Type="CardFileBooks_Model.Book" Role="Book" Multiplicity="*" />
+				</Association>
+				<Association Name="AuthorBook">
+					<End Type="CardFileBooks_Model.Author" Role="Author" Multiplicity="*" />
+					<End Type="CardFileBooks_Model.Book" Role="Book" Multiplicity="*" />
+				</Association>
+			</Schema>
+		</edmx:ConceptualModels>
+		<!-- C-S mapping content -->
+		<edmx:Mappings>
+			<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+				<EntityContainerMapping StorageEntityContainer="CardFileBooks_ModelStoreContainer"
+				                        CdmEntityContainer="CardFileBooks_ModelContainer">
+					<EntitySetMapping Name="Genres">
+						<EntityTypeMapping TypeName="IsTypeOf(CardFileBooks_Model.Genre)">
+							<MappingFragment StoreEntitySet="Genres">
+								<ScalarProperty Name="GenreId" ColumnName="GenreId" />
+								<ScalarProperty Name="GenreName" ColumnName="GenreName" />
+							</MappingFragment>
+						</EntityTypeMapping>
+					</EntitySetMapping>
+					<EntitySetMapping Name="Authors">
+						<EntityTypeMapping TypeName="IsTypeOf(CardFileBooks_Model.Author)">
+							<MappingFragment StoreEntitySet="Authors">
+								<ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+								<ScalarProperty Name="FullName" ColumnName="FullName" />
+							</MappingFragment>
+						</EntityTypeMapping>
+					</EntitySetMapping>
+					<EntitySetMapping Name="Books">
+						<EntityTypeMapping TypeName="IsTypeOf(CardFileBooks_Model.Book)">
+							<MappingFragment StoreEntitySet="Books">
+								<ScalarProperty Name="BookId" ColumnName="BookId" />
+								<ScalarProperty Name="ReleaseYear" ColumnName="ReleaseYear" />
+								<ScalarProperty Name="Publisher" ColumnName="Publisher" />
+								<ScalarProperty Name="Description" ColumnName="Description" />
+								<ScalarProperty Name="NumberOfPages" ColumnName="NumberOfPages" />
+								<ScalarProperty Name="ISBN" ColumnName="ISBN" />
+								<ScalarProperty Name="Title" ColumnName="Title" />
+							</MappingFragment>
+						</EntityTypeMapping>
+					</EntitySetMapping>
+					<AssociationSetMapping Name="GenreBook" TypeName="CardFileBooks_Model.GenreBook" StoreEntitySet="GenreBook">
+						<EndProperty Name="Genre">
+							<ScalarProperty Name="GenreId" ColumnName="Genres_GenreId" />
+						</EndProperty>
+						<EndProperty Name="Book">
+							<ScalarProperty Name="BookId" ColumnName="Book_BookId" />
+						</EndProperty>
+					</AssociationSetMapping>
+					<AssociationSetMapping Name="AuthorBook" TypeName="CardFileBooks_Model.AuthorBook" StoreEntitySet="AuthorBook">
+						<EndProperty Name="Author">
+							<ScalarProperty Name="AuthorId" ColumnName="Authors_AuthorId" />
+						</EndProperty>
+						<EndProperty Name="Book">
+							<ScalarProperty Name="BookId" ColumnName="Book_BookId" />
+						</EndProperty>
+					</AssociationSetMapping>
+				</EntityContainerMapping>
+			</Mapping>
+		</edmx:Mappings>
+	</edmx:Runtime>
+	<!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+	<edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+		<edmx:Connection>
+			<DesignerInfoPropertySet>
+				<DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+			</DesignerInfoPropertySet>
+		</edmx:Connection>
+		<edmx:Options>
+			<DesignerInfoPropertySet>
+				<DesignerProperty Name="ValidateOnBuild" Value="true" />
+				<DesignerProperty Name="EnablePluralization" Value="False" />
+				<DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+				<DesignerProperty Name="UseLegacyProvider" Value="False" />
+			</DesignerInfoPropertySet>
+		</edmx:Options>
+		<!-- Diagram content (shape and connector positions) -->
+		<edmx:Diagrams>
+		</edmx:Diagrams>
+	</edmx:Designer>
 </edmx:Edmx>

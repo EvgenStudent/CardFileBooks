@@ -1,5 +1,4 @@
 ﻿using System.Configuration;
-using Web.Client.ConfigManager.Entity;
 using Web.Client.WebConfigSections;
 
 namespace Web.Client.ConfigManager
@@ -10,10 +9,12 @@ namespace Web.Client.ConfigManager
 
 		private CardFileBooksConfigManager()
 		{
-			var сonfigSection = (CardFileBooksConfigurationSettingsSection) ConfigurationManager.GetSection(CardFileBooksConfigurationSettingsSection.SectionName);
+			var сonfigSection =
+				(CardFileBooksConfigurationSettingsSection)
+					ConfigurationManager.GetSection(CardFileBooksConfigurationSettingsSection.SectionName);
 
 			ApplicationName = сonfigSection.ApplicationName.Value;
-			ApiUrls = new ApiUrlsCollection();
+			PageSize = сonfigSection.PageSize.Value;
 		}
 
 		public static CardFileBooksConfigManager Instance
@@ -22,6 +23,6 @@ namespace Web.Client.ConfigManager
 		}
 
 		public string ApplicationName { get; private set; }
-		public ApiUrlsCollection ApiUrls { get; private set; }
+		public int PageSize { get; private set; }
 	}
 }

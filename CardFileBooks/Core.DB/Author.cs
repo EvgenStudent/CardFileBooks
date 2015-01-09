@@ -20,11 +20,7 @@ namespace Core.DB
         }
     
         public int AuthorId { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public System.DateTime DateOfBirth { get; set; }
-        public string PlaceOfBirth { get; set; }
-        public string Description { get; set; }
+        public string FullName { get; set; }
     
         public virtual ICollection<Book> Book { get; set; }
     }

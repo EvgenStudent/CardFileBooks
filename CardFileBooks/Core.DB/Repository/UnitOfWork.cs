@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Data.Entity.Infrastructure;
 using Core.DB.Data;
 
 namespace Core.DB.Repository
@@ -33,6 +34,11 @@ namespace Core.DB.Repository
 					_context.Dispose();
 
 			_disposed = true;
+		}
+
+		public DbEntityEntry Entry(object o)
+		{
+			return _context.Entry(o);
 		}
 
 		public IRepository<T> Repository<T>() where T : class

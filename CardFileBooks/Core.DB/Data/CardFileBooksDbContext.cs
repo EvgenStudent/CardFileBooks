@@ -14,7 +14,6 @@ namespace Core.DB.Data
 
 		public int SaveChanges()
 		{
-			_context.ApplyStateChanges();
 			return _context.SaveChanges();
 		}
 

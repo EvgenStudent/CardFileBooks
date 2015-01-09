@@ -1,10 +1,4 @@
-﻿using System.Linq;
-using System.Web.Mvc;
-using AutoMapper.QueryableExtensions;
-using Core.DB;
-using Core.DB.Data;
-using Core.DB.Repository;
-using Core.Entities.DTOs;
+﻿using System.Web.Mvc;
 
 namespace Web.Server.Controllers
 {

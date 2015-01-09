@@ -16,19 +16,19 @@ namespace Core.DB
     {
         public Book()
         {
-            this.Genre = new HashSet<Genre>();
-            this.Author = new HashSet<Author>();
+            this.Genres = new HashSet<Genre>();
+            this.Authors = new HashSet<Author>();
         }
     
         public int BookId { get; set; }
-        public System.DateTime FinalReleaseDate { get; set; }
+        public int ReleaseYear { get; set; }
         public string Publisher { get; set; }
         public string Description { get; set; }
         public int NumberOfPages { get; set; }
         public string ISBN { get; set; }
         public string Title { get; set; }
     
-        public virtual ICollection<Genre> Genre { get; set; }
-        public virtual ICollection<Author> Author { get; set; }
+        public virtual ICollection<Genre> Genres { get; set; }
+        public virtual ICollection<Author> Authors { get; set; }
     }
 }

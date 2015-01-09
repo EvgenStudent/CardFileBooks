@@ -1,4 +1,13 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@using Web.Client.ConfigManager
+@{
+	ViewBag.Title = "Card Files";
 }
 
+@Scripts.Render("~/bundles/kendoGrid")
+@Styles.Render("~/Content/kendoGrid")
+
+<div id="kendoBooksGrid"></div>
+
+<script>
+	applyKendoGrid(@CardFileBooksConfigManager.Instance.PageSize);
+</script>

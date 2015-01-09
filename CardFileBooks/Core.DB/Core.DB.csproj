@@ -87,10 +87,7 @@
       <DependentUpon>CardFileBooks_Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="Data\CardFileBooksDbContext.cs" />
-    <Compile Include="Data\DbContextExtension.cs" />
     <Compile Include="Data\IDbContext.cs" />
-    <Compile Include="Data\IObjectState.cs" />
-    <Compile Include="Data\ObjectState.cs" />
     <Compile Include="Genre.cs">
       <DependentUpon>CardFileBooks_Model.tt</DependentUpon>
     </Compile>
@@ -130,6 +127,7 @@
       <LastGenOutput>CardFileBooks_Model.cs</LastGenOutput>
       <DependentUpon>CardFileBooks_Model.edmx</DependentUpon>
     </Content>
+    <Content Include="update.txt" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

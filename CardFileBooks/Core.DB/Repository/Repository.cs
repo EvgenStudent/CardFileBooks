@@ -41,9 +41,6 @@ namespace Core.DB.Repository
 		public virtual void Delete(object id)
 		{
 			var entity = DbSet.Find(id);
-			var objectState = entity as IObjectState;
-			if (objectState != null)
-				objectState.State = ObjectState.Deleted;
 			Delete(entity);
 		}
 

@@ -1,0 +1,54 @@
+﻿			
+	Использовать в HomeController в Web.Server
+			
+			using (var db = new CardFileBooks_ModelContainer())
+			{
+				var genres = db.Genres.ToList();
+				var books = db.Books.ToList();
+				var authors = db.Authors.ToList();
+
+				var rand = new Random();
+
+				for (int i = 0; i < 20; i++) // genres
+				{
+					db.Genres.Add(new Genre { GenreName = GetUniqueKey() });
+					db.SaveChanges();
+				}
+
+				for (int i = 0; i < 500; i++)
+				{
+					var authorCount = rand.Next(1, 4);
+					var listAuthor = new List<Author>(authorCount);
+					for (int j = 0; j < authorCount; j++)
+						listAuthor.Add(new Author { FullName = GetUniqueKey() });
+
+					var genreCount = rand.Next(1, 4);
+					var listGenre = new List<Genre>(genreCount);
+					for (int j = 0; j < genreCount; j++)
+						listGenre.Add(db.Genres.Local[rand.Next(0, db.Genres.Local.Count)]);
+
+					db.Books.Add(new Book { Authors = listAuthor, Description = GetUniqueKey(), ReleaseYear = rand.Next(1980, 2015), ISBN = GetUniqueKey(), NumberOfPages = rand.Next(10, 100), Publisher = GetUniqueKey(), Title = GetUniqueKey(), Genres = listGenre });
+				}
+
+				db.SaveChanges();
+			}
+
+
+			
+		public static string GetUniqueKey(int maxSize = 10)
+		{
+			char[] chars = new char[62];
+			chars =
+			"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".ToCharArray();
+			byte[] data = new byte[1];
+			RNGCryptoServiceProvider crypto = new RNGCryptoServiceProvider();
+			crypto.GetNonZeroBytes(data);
+			data = new byte[maxSize];
+			crypto.GetNonZeroBytes(data);
+			StringBuilder result = new StringBuilder(maxSize);
+			foreach (byte b in data)
+			{
+				result.Append(chars[b % (chars.Length)]);
+			}
+			return result.ToString();
+		}
